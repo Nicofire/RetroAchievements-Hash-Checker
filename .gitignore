@@ -1,0 +1,5 @@
+.venv
+.ra_nds_games_cache.json
+
+---ROMS---
+*.nds
