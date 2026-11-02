@@ -1,0 +1,2 @@
+__version__ = "0.1.0"
+ENGINE_COMMIT = "1433173220a7eaede6a9ed7a18e94117be1821e0"

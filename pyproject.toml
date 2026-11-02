@@ -1,0 +1,24 @@
+[build-system]
+requires = ["scikit-build-core>=0.10"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "ra-hash-checker"
+version = "0.1.0"
+description = "Read-only RetroAchievements ROM identification for Windows and Linux"
+requires-python = ">=3.11"
+dependencies = ["rich>=13.9", "python-dotenv>=1.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "build>=1.2"]
+
+[project.scripts]
+ra-hash-checker = "ra_hash_checker.cli:main"
+
+[tool.scikit-build]
+wheel.packages = ["src/ra_hash_checker"]
+sdist.include = ["src/ra_hash_checker/_vendor/**"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
