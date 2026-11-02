@@ -1,0 +1,41 @@
+name: Tests and Wheels
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        python: ['3.11', '3.14']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest -q
+      - run: cmake -S . -B build/native -DRA_BUILD_TESTS=ON
+      - run: cmake --build build/native --config Release
+      - run: ctest --test-dir build/native -C Release --output-on-failure
+      - run: python -m build
+      - name: Install wheel outside checkout
+        shell: pwsh
+        run: |
+          python -m venv "${{ runner.temp }}/wheel-test"
+          $python = if ($IsWindows) { "${{ runner.temp }}/wheel-test/Scripts/python.exe" } else { "${{ runner.temp }}/wheel-test/bin/python" }
+          $wheel = (Get-ChildItem dist/*.whl | Select-Object -First 1).FullName
+          & $python -m pip install $wheel
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $smoke = (Resolve-Path tests/wheel_smoke.py).Path
+          Push-Location "${{ runner.temp }}"
+          & $python $smoke
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & $python -m ra_hash_checker --list-consoles
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Pop-Location
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-${{ matrix.os }}-${{ matrix.python }}
+          path: dist/*
