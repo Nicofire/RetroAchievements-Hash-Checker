@@ -18,9 +18,19 @@ MD5 calculation.
 
 ROM files and API credentials are not included. Use files you are authorized to access.
 
-[Quick Start](#quick-start) | [Usage](#usage) | [Configuration](#configuration) |
+[Terminal Preview](#terminal-preview) | [Quick Start](#quick-start) | [Usage](#usage) | [Configuration](#configuration) |
 [Supported Systems](#supported-systems-and-formats) | [Troubleshooting](#troubleshooting) |
 [Development](#development)
+
+## Terminal Preview
+
+![Terminal output showing separate Game Boy Advance and Nintendo DS tables, achievement counts, and unknown hashes](docs/images/terminal-preview.svg)
+
+Rendered by the application using **synthetic example data**, not real ROMs or
+catalog matches. No API key or personal paths are included.
+
+See [Terminal Examples](docs/examples.md) for copyable console output, the compact
+view for narrow terminals, and instructions to regenerate the previews.
 
 ## Quick Start
 
