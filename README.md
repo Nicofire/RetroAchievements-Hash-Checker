@@ -370,6 +370,13 @@ The [CI workflow](.github/workflows/test.yml) targets Windows and Linux with Pyt
 an installed wheel outside the checkout. Local validation does not substitute for
 running each CI platform.
 
+To verify or update the vendored engine, use
+`python scripts/vendor_rcheevos.py --check` or
+`python scripts/vendor_rcheevos.py --update FULL_COMMIT_SHA`.
+These maintenance commands require GitHub access. See the
+[vendor notes](src/ra_hash_checker/_vendor/README.md#checking-and-updating) for
+safety checks, exit codes, and the required validation after an update.
+
 Application modules live under `src/ra_hash_checker/`:
 
 | Component | Responsibility |
