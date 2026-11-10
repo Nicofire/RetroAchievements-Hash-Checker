@@ -1,10 +1,10 @@
 #include "rc_hash.h"
 
-#include "../rhash/rc_hash_internal.h"
+#include "../../src/hash/rc_hash_internal.h"
 
-#include "../rc_compat.h"
+#include "../../src/util/rc_compat.h"
 #include "../test_framework.h"
-#include "data.h"
+#include "hash_data.h"
 #include "mock_filereader.h"
 
 #include <stdlib.h>
@@ -899,6 +899,9 @@ void test_hash_rom(void) {
 
   /* Atari 2600 */
   TEST_PARAMS4(test_hash_full_file, RC_CONSOLE_ATARI_2600, "test.bin", 2048, "02c3f2fa186388ba8eede9147fb431c4");
+
+  /* Atari 5200 */
+  TEST_PARAMS4(test_hash_full_file, RC_CONSOLE_ATARI_5200, "test.a52", 16384, "455f07d8500f3fabc54906737866167f");
 
   /* Atari 7800 */
   TEST(test_hash_atari_7800);
