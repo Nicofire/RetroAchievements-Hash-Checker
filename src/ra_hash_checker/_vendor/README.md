@@ -2,7 +2,7 @@
 
 Source: [RetroAchievements/rcheevos](https://github.com/RetroAchievements/rcheevos)
 
-Pinned commit: `eea6461f172d37d36b0d56568f13a505e0a9fd86`.
+Pinned commit: `a1ba160cd1b710aa54d3f8d4a1943c2adb0ff96e`.
 
 The upstream license is preserved unchanged in `rcheevos/LICENSE`.
 Upstream headers, hash sources and the selected synthetic hash tests are unchanged.
